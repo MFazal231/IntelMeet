@@ -1,0 +1,108 @@
+{
+  "users": [
+    {
+      "id": "user-demo",
+      "name": "Alicia Park",
+      "email": "hello@northstar.io",
+      "passwordHash": "$2b$10$2FbKR7chCOF7ZhTJTHHMQOnI/mnkMA0nJd9SYuPM2ugOnqedQ.FtC",
+      "avatar": "",
+      "theme": "dark",
+      "role": "owner",
+      "createdAt": "2026-10-17T20:49:10.492Z"
+    },
+    {
+      "id": "user-ops",
+      "name": "Marcus Chen",
+      "email": "marcus@northstar.io",
+      "passwordHash": "$2b$10$z.XW66cDprrI9NTQdlNqVeRZ5fOTimalj92DWkHW93AOc5KZpgNxO",
+      "avatar": "",
+      "theme": "dark",
+      "role": "member",
+      "createdAt": "2026-10-17T20:49:10.567Z"
+    },
+    {
+      "id": "user-1792270150641-7tx41q",
+      "name": "Test User",
+      "email": "tester-1792270150353@example.com",
+      "passwordHash": "$2b$10$79n/O2B46nwa98IZg7cmluG6ZcWKV/mJdxM180Jbt9cist.hhNaF2",
+      "theme": "dark",
+      "role": "member",
+      "avatar": "",
+      "createdAt": "2026-10-17T20:49:10.641Z"
+    },
+    {
+      "id": "user-1792270150857-eajzpx",
+      "name": "Persistent User",
+      "email": "persist-1792270150778@example.com",
+      "passwordHash": "$2b$10$h8E8xtkuKfwqGadiIeTv9efUUBhFp8Q.DqPjUOZepTzlWTrN1VClS",
+      "theme": "dark",
+      "role": "member",
+      "avatar": "",
+      "createdAt": "2026-10-17T20:49:10.858Z"
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "ws-1",
+      "name": "Northstar Labs",
+      "description": "Shared workspace for cross-functional planning, launch readiness, and customer engagement.",
+      "ownerId": "user-demo",
+      "createdAt": "2026-10-17T20:49:10.567Z",
+      "members": [
+        "user-demo",
+        "user-ops"
+      ]
+    }
+  ],
+  "meetings": [
+    {
+      "id": "m-1",
+      "title": "Quarterly planning",
+      "description": "Roadmap alignment and sprint planning.",
+      "startAt": "2026-10-17T21:49:10.567Z",
+      "duration": 60,
+      "timezone": "UTC",
+      "status": "scheduled",
+      "participants": [
+        "Alicia Park",
+        "Marcus Chen"
+      ],
+      "meetingCode": "INT-1024",
+      "inviteLink": "https://meet.intellmeet.app/room/quarterly-planning"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1792270150863-32vnbx",
+      "title": "Ship the demo flow",
+      "status": "Done",
+      "priority": "High",
+      "owner": "Persistent User"
+    },
+    {
+      "id": "task-1",
+      "title": "Finalize onboarding flow",
+      "status": "In Progress",
+      "priority": "High",
+      "owner": "Ava"
+    },
+    {
+      "id": "task-2",
+      "title": "Prepare demo script",
+      "status": "To Do",
+      "priority": "Medium",
+      "owner": "Marcus"
+    }
+  ],
+  "messagesByRoom": {
+    "room-1": [
+      {
+        "id": "msg-1",
+        "roomId": "room-1",
+        "author": "Ava",
+        "content": "Thanks for the recap. Let’s prepare the launch checklist.",
+        "createdAt": "2026-10-17T20:49:10.567Z"
+      }
+    ]
+  }
+}
