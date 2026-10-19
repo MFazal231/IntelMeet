@@ -1,4 +1,4 @@
-﻿import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import env from './env.js';
 
 export async function connectDatabase() {
@@ -8,7 +8,7 @@ export async function connectDatabase() {
   }
 
   try {
-    await mongoose.connect(env.mongoUri);
+    await mongoose.connect(env.mongoUri, { serverSelectionTimeoutMS: 2500 });
     console.log('MongoDB connected');
     return true;
   } catch (error) {

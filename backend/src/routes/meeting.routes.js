@@ -1,4 +1,4 @@
-﻿import { Router } from 'express';
+import { Router } from 'express';
 import { authMiddleware } from '../middleware/auth.js';
 import { createId, ensureSeedData, getStore, saveStore } from '../data/store.js';
 
@@ -52,6 +52,20 @@ router.patch('/:meetingId', (req, res) => {
 
   saveStore();
   return res.json({ meeting });
+});
+
+router.delete('/:meetingId', (req, res) => {
+  ensureSeedData();
+  const { meetingId } = req.params;
+  const initialLength = getStore().meetings.length;
+  getStore().meetings = getStore().meetings.filter((candidate) => candidate.id !== meetingId && candidate.meetingCode !== meetingId);
+
+  if (getStore().meetings.length === initialLength) {
+    return res.status(404).json({ message: 'Meeting not found.' });
+  }
+
+  saveStore();
+  return res.json({ message: 'Meeting canceled.', meetingId });
 });
 
 export default router;

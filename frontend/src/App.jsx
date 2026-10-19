@@ -1,4 +1,4 @@
-﻿import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -7,6 +7,7 @@ import DashboardPage from './pages/DashboardPage.jsx';
 import AiNotesPage from './pages/AiNotesPage.jsx';
 import TasksPage from './pages/TasksPage.jsx';
 import WorkspacePage from './pages/WorkspacePage.jsx';
+import MeetingRoomPage from './pages/MeetingRoomPage.jsx';
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -24,6 +25,7 @@ function AppRoutes() {
         <Route path="/ai-notes" element={<ProtectedRoute><AiNotesPage /></ProtectedRoute>} />
         <Route path="/tasks" element={<ProtectedRoute><TasksPage /></ProtectedRoute>} />
         <Route path="/workspace" element={<ProtectedRoute><WorkspacePage /></ProtectedRoute>} />
+        <Route path="/room/:roomId" element={<ProtectedRoute><MeetingRoomPage /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

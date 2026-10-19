@@ -1,4 +1,4 @@
-﻿import { Router } from 'express';
+import { Router } from 'express';
 import { authMiddleware } from '../middleware/auth.js';
 import { createId, ensureSeedData, getStore, saveStore } from '../data/store.js';
 
@@ -25,6 +25,30 @@ router.post('/', (req, res) => {
   saveStore();
 
   return res.status(201).json({ task });
+});
+
+router.post('/bulk', (req, res) => {
+  ensureSeedData();
+  const items = Array.isArray(req.body.tasks) ? req.body.tasks : [];
+  if (!items.length) {
+    return res.status(400).json({ message: 'No tasks provided.' });
+  }
+
+  const createdTasks = items.map((item) => ({
+    id: createId('task'),
+    title: item.title || (typeof item === 'string' ? item : 'Action item'),
+    status: item.status || 'To Do',
+    priority: item.priority || 'Medium',
+    owner: item.owner || item.assignee || req.user?.name || 'Unassigned',
+  }));
+
+  getStore().tasks.unshift(...createdTasks);
+  saveStore();
+
+  return res.status(201).json({
+    message: `Successfully created ${createdTasks.length} tasks`,
+    tasks: createdTasks,
+  });
 });
 
 router.patch('/:taskId', (req, res) => {
