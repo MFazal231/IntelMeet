@@ -1,6 +1,11 @@
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5001';
+const defaultSocketUrl =
+  import.meta.env.MODE === 'production'
+    ? 'https://intellmeet-ai-powered-enterprise-meeting-h6bn.onrender.com'
+    : 'http://localhost:5001';
+
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || defaultSocketUrl;
 
 let socketInstance = null;
 
