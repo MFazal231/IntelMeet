@@ -1,4 +1,4 @@
-﻿import http from 'http';
+import http from 'http';
 import { Server } from 'socket.io';
 import app from './app.js';
 import env from './config/env.js';
@@ -8,8 +8,9 @@ import registerMeetingSocket from './sockets/meetingSocket.js';
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: env.clientUrl,
+    origin: (origin, callback) => callback(null, true),
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 

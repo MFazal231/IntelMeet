@@ -1,4 +1,4 @@
-﻿import express from 'express';
+import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -16,7 +16,20 @@ const app = express();
 
 app.use(
   cors({
-    origin: env.clientUrl,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or same-origin)
+      if (!origin) return callback(null, true);
+      if (
+        origin === env.clientUrl ||
+        origin.includes('localhost') ||
+        origin.includes('127.0.0.1') ||
+        origin.includes('vercel.app') ||
+        origin.includes('onrender.com')
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
     credentials: true,
   }),
 );
